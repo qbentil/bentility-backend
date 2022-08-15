@@ -1,3 +1,4 @@
+import DBCONNECT from './database/index.js';
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 import express from 'express'
@@ -18,5 +19,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // run server
 const port = process.env.PORT || 3000
 app.listen(port, () => {
+    DBCONNECT();
   console.log(`Server running on port ${port} 🚀`)
 })
