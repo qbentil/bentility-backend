@@ -1,0 +1,25 @@
+{
+  "name": "bentility",
+  "version": "1.0.0",
+  "description": "An API for bentility blog",
+  "main": "app.js",
+  "type":"module",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qbentil/bentility-api.git"
+  },
+  "keywords": [
+    "Blog",
+    "Bentility",
+    "API"
+  ],
+  "author": "Shadrack Bentil (qbentil)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qbentil/bentility-api/issues"
+  },
+  "homepage": "https://github.com/qbentil/bentility-api#readme"
+}
