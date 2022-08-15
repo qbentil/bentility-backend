@@ -1,12 +1,12 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Bentility" />
+  <img src="./dash.png" alt="Bentility" />
 
   &#xa0;
 
-  <a href="https://bentility.netlify.app">Demo</a>
+  <a href="https://bentility.vercel.app">Demo</a>
 </div>
 
-<h1 align="center">Bentility</h1>
+<h1 align="center">Bentility Blog</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/qbentil/bentility?color=56BEB8">
