@@ -1,9 +1,10 @@
-import DBCONNECT from "./database/index.js";
-import { HomeRoute } from "./routes/index.js";
+import { HomeRoute, UserRoute } from "./routes/index.js";
+
+import DBCONNECT from "./config/dbconnection.js";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import errorHandler from "./middlewares/ErrorHandler.js";
 import express from "express";
-import mongoose from "mongoose";
 
 // init dotenv
 dotenv.config();
@@ -16,10 +17,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // HOME ROUTE
 app.use("/", HomeRoute);
+app.use("/users", UserRoute);
+
+// MIDDLEWARE
+app.use(errorHandler)
 
 // run server
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  DBCONNECT();
+app.listen(port, async () => {
+  await DBCONNECT();
   console.log(`Server running on port ${port} 🚀`);
 });
