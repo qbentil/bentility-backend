@@ -1,4 +1,4 @@
-import { HomeController } from '../controllers/home.controller.js';
+import { HomeController } from '../controllers/home.controllers.js';
 import express from 'express';
 
 // init express router

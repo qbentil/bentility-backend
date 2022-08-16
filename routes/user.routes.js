@@ -1,4 +1,4 @@
-import { addUser, changePassword, deleteUser, getUser, getUsers, updateUser, userAuth } from "../controllers/user.controller.js";
+import { addUser, changePassword, deleteUser, getUser, getUsers, updateUser, userAuth } from "../controllers/user.controllers.js";
 
 import { Router } from "express";
 
