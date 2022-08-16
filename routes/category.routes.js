@@ -1,4 +1,4 @@
-import { createCategory, getCategories } from '../controllers/category.controllers.js';
+import { createCategory, deleteCategory, getCategories, updateCategory } from '../controllers/category.controllers.js';
 
 import {Router} from 'express';
 
@@ -11,10 +11,10 @@ router.post('/', createCategory)
 router.get('/', getCategories)
 
 // UPDATE CATEGORY
-router.put('/:id', (req, res) => {})
+router.put('/:id', updateCategory)
 
 // DELETE CATEGORY
-router.delete('/:id', (req, res) => {})
+router.delete('/:id', deleteCategory)
 
 // GET SINGLE CATEGORY
 router.get('/category', (req, res) => {})
