@@ -1,4 +1,4 @@
-import { HomeRoute, UserRoute } from "./routes/index.js";
+import { HomeRoute, UserRoute } from "./routes/index.routes.js";
 
 import DBCONNECT from "./config/dbconnection.js";
 import bodyParser from "body-parser";
