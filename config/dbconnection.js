@@ -5,7 +5,11 @@ import mongoose from 'mongoose'
 // connect to mongoDB
 const DBCONNECT  = async () => {
   try {
-      await mongoose.connect(process.env.MONGODB_URL || '');
+      await mongoose.connect(process.env.MONGODB_URL || '', {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+        autoIndex: true, //make this also true
+      });
     } catch (error) {
       console.log(error);
     }
