@@ -1,4 +1,4 @@
-import { HomeRoute, UserRoute } from "./routes/index.routes.js";
+import { CategoryRoute, HomeRoute, UserRoute } from "./routes/index.routes.js";
 
 import DBCONNECT from "./config/dbconnection.js";
 import bodyParser from "body-parser";
@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // HOME ROUTE
 app.use("/", HomeRoute);
 app.use("/users", UserRoute);
+app.use("/categories", CategoryRoute);
 
 // MIDDLEWARE
 app.use(errorHandler)
