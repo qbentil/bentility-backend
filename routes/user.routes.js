@@ -20,7 +20,7 @@ router.get("/user", getUser)
 
 
 // CHANGE PASSWORD
-router.put("/password/:id", changePassword)
+router.patch("/password/:id", changePassword)
 
 // LOGIN USER
 router.post("/auth", userAuth)
