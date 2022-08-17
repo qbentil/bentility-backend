@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const GenerateToken = (user) => {
     //   Create access token
-    const accessToken = jwt.sign(
+    const access_token = jwt.sign(
         { id: user._id, role: user.role },
         process.env.JWT_SECRET || "",
         {
@@ -10,7 +10,7 @@ const GenerateToken = (user) => {
         }
     );
     //   Create refresh token
-    const refreshToken = jwt.sign(
+    const refresh_token = jwt.sign(
         { id: user._id, role: user.role },
         process.env.JWT_REFRESH_SECRET || "",
         {
@@ -18,7 +18,7 @@ const GenerateToken = (user) => {
         }
     );
 
-    return { accessToken, refreshToken }
+    return { access_token, refresh_token }
 }
 
 export default GenerateToken
