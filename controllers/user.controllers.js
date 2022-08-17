@@ -1,3 +1,4 @@
+import GenerateToken from "../utils/Tokens.js";
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 
@@ -192,8 +193,14 @@ export const userAuth = async (req, res, next) => {
                 message: "Invalid credentials",
             });
         }
+        // generate token
+        const generatedToken = GenerateToken(user);
+        
+        // update token in user
+        const updated_user = await User.findByIdAndUpdate(user._id, { token: generatedToken });
+        
         // remove password and token
-        const { password, token, ...userData } = user._doc;
+        const { password, ...userData } = updated_user._doc;
         res.status(200).json({
             success: true,
             message: "User authenticated successfully",
