@@ -1,4 +1,4 @@
-import { createCategory, deleteCategory, getCategories, updateCategory } from '../controllers/category.controllers.js';
+import { createCategory, deleteCategory, getCategories, getCategory, updateCategory } from '../controllers/category.controllers.js';
 
 import {Router} from 'express';
 
@@ -17,6 +17,6 @@ router.put('/:id', updateCategory)
 router.delete('/:id', deleteCategory)
 
 // GET SINGLE CATEGORY
-router.get('/category', (req, res) => {})
+router.get('/category', getCategory)
 
 export default router;
