@@ -197,7 +197,7 @@ export const userAuth = async (req, res, next) => {
         const generatedToken = GenerateToken(user);
         
         // update token in user
-        const updated_user = await User.findByIdAndUpdate(user._id, { token: generatedToken });
+        const updated_user = await User.findByIdAndUpdate(user._id, { token: generatedToken.refresh_token }, { new: true });
         
         // remove password and token
         const { password, ...userData } = updated_user._doc;
