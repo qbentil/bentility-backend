@@ -86,3 +86,34 @@ export const deleteCategory = async (req, res, next) => {
     next(error);
   }
 };
+
+// GET SINGLE CATEOGRY
+export const getCategory = async (req, res, next) => {
+  const {key, value} = req.body;
+  console.log(req.body);
+  const keys = ["slug", "title"];
+  if(!keys.includes(key)) {
+      return res.status(400).json({
+          success: false,
+          message: "Invalid query key <[slug, title]>",
+      });
+  }
+try {
+  const category = await Category.findOne({[key]: value});
+  if(!category) {
+      res.status(404).json({
+          success: false,
+          message: "Category not found",
+      });
+  }
+  res.status(200).json({
+      success: true,
+      message: "User retrieved successfully",
+      user: category,
+  });
+
+  
+} catch (error) {
+  next(error);
+}
+};
