@@ -1,7 +1,6 @@
 import { createCategory, deleteCategory, getCategories, getCategory, updateCategory } from '../controllers/category.controllers.js';
 
 import {Router} from 'express';
-import { verifyAccessToken } from '../middlewares/Verifications.js';
 
 const router = Router();
 
@@ -9,7 +8,7 @@ const router = Router();
 router.post('/', createCategory)
 
 // READ CATEGORIES
-router.get('/', verifyAccessToken, getCategories)
+router.get('/', getCategories)
 
 // UPDATE CATEGORY
 router.put('/:id', updateCategory)

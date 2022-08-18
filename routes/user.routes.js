@@ -1,4 +1,4 @@
-import { addUser, changePassword, deleteUser, getUser, getUsers, updateUser, userAuth } from "../controllers/user.controllers.js";
+import { addUser, changePassword, deleteUser, getUser, getUsers, updateUser } from "../controllers/user.controllers.js";
 
 import { Router } from "express";
 
@@ -22,7 +22,5 @@ router.get("/user", getUser)
 // CHANGE PASSWORD
 router.patch("/password/:id", changePassword)
 
-// LOGIN USER
-router.post("/auth", userAuth)
 
 export default router;
