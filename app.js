@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // HOME ROUTE
 app.use("/", HomeRoute);
-app.use("/users", verifyAccessToken, UserRoute);
+app.use("/users", UserRoute);
 app.use("/categories",verifyAccessToken, CategoryRoute);
 app.use("/auth", AuthRoute);
 
