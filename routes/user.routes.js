@@ -1,6 +1,7 @@
 import { addUser, changePassword, deleteUser, getUser, getUsers, updateUser } from "../controllers/user.controllers.js";
 
 import { Router } from "express";
+import { verifyAccessToken } from "../middlewares/Verifications.js";
 
 const router = Router();
 // ADD USER
@@ -13,7 +14,7 @@ router.put("/:id", updateUser)
 router.delete("/:id", deleteUser)
 
 // GET USERS
-router.get("/", getUsers)
+router.get("/", verifyAccessToken, getUsers)
 
 // GET USER
 router.get("/user", getUser)
