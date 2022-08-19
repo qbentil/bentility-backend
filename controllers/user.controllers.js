@@ -1,48 +1,17 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 
-// ADD USER
-export const addUser = async (req, res, next) => {
-  const { username, email, password, name, role, about, phone, avatar } = req.body;
-  let salt = bcrypt.genSaltSync(10);
-  let hash = bcrypt.hashSync(password, salt);
-  try {
-    const user = new User({
-      username,
-      email,
-      password: hash,
-      name,
-      role,
-      about,
-      phone,
-      avatar,
-    });
-    await user.save();
-
-    // remove password and token
-    const { password, token, ...userData } = user._doc;
-    res.status(201).json({
-      success: true,
-      message: "User added successfully",
-      user: userData,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 // UPDATE USER
 export const updateUser = async (req, res, next) => {
   const { id } = req.user;
-  const { name, about, phone, avatar } = req.body;
+  const { name, about, phone } = req.body;
   try {
     const user = await User.findByIdAndUpdate(
       id,
       {
         name,
         about,
-        phone,
-        avatar,
+        phone
       },{ new: true });
     // remove password and token
     const { password, token, ...userData } = user._doc;
@@ -115,17 +84,9 @@ export const getUsers = async (req, res, next) => {
 
 // GET SINGLE USER 
 export const getUser = async (req, res, next) => {
-    const {key, value} = req.body;
-    console.log(req.body);
-    const keys = ["username", "email", "phone"];
-    if(!keys.includes(key)) {
-        return res.status(400).json({
-            success: false,
-            message: "Invalid query key <[username, email, phone]>",
-        });
-    }
+  const { id } = req.user;
   try {
-    const user = await User.findOne({[key]: value});
+    const user = await User.findOne({id});
     if(!user) {
         res.status(404).json({
             success: false,
@@ -172,6 +133,22 @@ export const changePassword = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "Password changed successfully",
+        });
+        
+    } catch (error) {
+        next(error);
+    }
+}
+
+// CHANGE AVATAR
+export const changeAvatar = async (req, res, next) => {
+    const { id } = req.user;
+    const { avatar } = req.body;
+    try {
+        await User.findByIdAndUpdate(id, {avatar});
+        res.status(200).json({
+            success: true,
+            message: "Avatar changed successfully",
         });
         
     } catch (error) {
