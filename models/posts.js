@@ -26,6 +26,11 @@ const PostSchema = new Schema({
         type: Number,
         default: 0
     },
+    writer: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'Writer is required']
+    },
     isPublished: {
         type: Boolean,
         default: false
