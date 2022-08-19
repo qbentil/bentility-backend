@@ -14,7 +14,7 @@ router.put("/:id", updateUser)
 router.delete("/:id", deleteUser)
 
 // GET USERS
-router.get("/", verifyAccessToken, getUsers)
+router.get("/", getUsers)
 
 // GET USER
 router.get("/user", getUser)
