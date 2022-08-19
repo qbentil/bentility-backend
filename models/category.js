@@ -17,6 +17,11 @@ const CategorySchema = new Schema({
         type: String,
         required: [true, 'Description is required']
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'User is required']
+    },
     image: {
         type: String,
     },
