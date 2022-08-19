@@ -1,4 +1,4 @@
-import { AuthRoute, CategoryRoute, HomeRoute, UserRoute } from "./routes/index.routes.js";
+import { AuthRoute, CategoryRoute, HomeRoute, PostRoute, UserRoute } from "./routes/index.routes.js";
 
 import DBCONNECT from "./config/dbconnection.js";
 import bodyParser from "body-parser";
@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", HomeRoute);
 app.use("/user", verifyAccessToken, UserRoute);
 app.use("/categories", CategoryRoute);
+app.use("/posts", PostRoute)
 app.use("/auth", AuthRoute);
 
 // MIDDLEWARE
