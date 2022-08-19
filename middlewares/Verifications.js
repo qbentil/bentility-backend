@@ -8,15 +8,15 @@ export const verifyAccessToken = (req, res, next) => {
 			token = req.headers.authorization?.split(" ")[1];
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
 				req.user = decoded;
-                console.log("user", decoded);
 				next()
         }catch(err)
         {
-            next(err)
+            next(CreateError("Invalid access token", 401));
+            // next(err)
         }
 	if (!token) {
-		// CreateError("No token", 403);
-        throw new Error("Unauthorized Access ")
+		next(CreateError("No access token", 401));
+        // throw new Error("Unauthorized Access ")
 	}
 };
 export const verifySuperAdmin = (req, res, next) => {
@@ -27,16 +27,20 @@ export const verifySuperAdmin = (req, res, next) => {
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
                 if(decoded.role !== 'admin')
                 {
-                    throw new Error("Unauthorized Access ")
+                    // throw new Error("Unauthorized Access ")
+                    next(CreateError("Unauthorized Access", 401));
                 }
                 req.user = decoded;
                 next();
         }catch(err)
         {
-            next(err)
+            // next(err)
+            next(CreateError("Invalid access token", 401));
         }
 	if (!token) {
 		// CreateError("No token", 403);
-        throw new Error("Unauthorized Access ")
+        // throw new Error("Unauthorized Access ")
+        next(CreateError("No access token", 401));
+        
 	}
 };
