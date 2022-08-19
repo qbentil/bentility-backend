@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // HOME ROUTE
 app.use("/", HomeRoute);
 app.use("/user", verifyAccessToken, UserRoute);
-app.use("/categories",verifyAccessToken, CategoryRoute);
+app.use("/categories", CategoryRoute);
 app.use("/auth", AuthRoute);
 
 // MIDDLEWARE
