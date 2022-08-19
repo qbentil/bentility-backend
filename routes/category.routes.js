@@ -1,20 +1,21 @@
 import { createCategory, deleteCategory, getCategories, getCategory, updateCategory } from '../controllers/category.controllers.js';
+import { verifyAccessToken, verifySuperAdmin } from '../middlewares/Verifications.js';
 
 import {Router} from 'express';
 
 const router = Router();
 
 // CREATE CATEOGRY
-router.post('/', createCategory)
+router.post('/', verifyAccessToken ,createCategory)
 
 // READ CATEGORIES
 router.get('/', getCategories)
 
 // UPDATE CATEGORY
-router.put('/:id', updateCategory)
+router.put('/:id', verifyAccessToken, updateCategory)
 
 // DELETE CATEGORY
-router.delete('/:id', deleteCategory)
+router.delete('/:id', verifySuperAdmin, deleteCategory)
 
 // GET SINGLE CATEGORY
 router.get('/category', getCategory)
