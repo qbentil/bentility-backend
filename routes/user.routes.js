@@ -16,10 +16,10 @@ router.get("/", getUser)
 
 
 // CHANGE PASSWORD
-router.patch("/", changePassword)
+router.patch("/password", changePassword)
 
 // CHANGE AVATAR
-router.patch("/avatar", changeAvatar)
-
+router.patch("/", changeAvatar)
+    
 
 export default router;
