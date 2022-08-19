@@ -73,8 +73,52 @@ const getPost = async (req, res, next) => {
     }
 }
 
+// UPDATE POST
+const updatePost = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        const post = await Post.findByIdAndUpdate(id, req.body, {
+            new: true,
+        });
+        if (!post) {
+            return res.status(404).json({
+                success: false,
+                message: "Post not found",
+            });
+        }
+        // remove isPublished property from response
+        const { isPublished, ...rest } = post._doc;
+
+        res.status(200).json({
+            success: true,
+            message: "Post updated successfully",
+            post: rest,
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
+// DELETE POST
+const deletePost = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        const post = await Post.findByIdAndDelete(id);
+        if (!post) {
+            return res.status(404).json({
+                success: false,
+                message: "Post not found",
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: "Post deleted successfully",
+        });
+    } catch (error) {
+        next(error);
+    }
+}
 
 
+export { createPost, getPosts, getPost, updatePost, deletePost };
 
-// modules export
-export { createPost, getPost, getPosts };
