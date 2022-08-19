@@ -33,14 +33,13 @@ export const addUser = async (req, res, next) => {
 
 // UPDATE USER
 export const updateUser = async (req, res, next) => {
-  const { id } = req.params;
-  const { name, role, about, phone, avatar } = req.body;
+  const { id } = req.user;
+  const { name, about, phone, avatar } = req.body;
   try {
     const user = await User.findByIdAndUpdate(
       id,
       {
         name,
-        role,
         about,
         phone,
         avatar,
@@ -59,7 +58,7 @@ export const updateUser = async (req, res, next) => {
 
 // DELETE USER
 export const deleteUser = async (req, res, next) => {
-  const { id } = req.params;
+  const { id } = req.user;
   try {
     const user = await User.findByIdAndDelete(id);
     if(!user) {
@@ -150,25 +149,31 @@ export const getUser = async (req, res, next) => {
 
 // CHANGE PASSWORD
 export const changePassword = async (req, res, next) => {
-    const { id } = req.params;
-    const { password } = req.body;
-    let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(password, salt);
+    const { id } = req.user;
+    const { password, new_password } = req.body;
     try {
-        const user = await User.findByIdAndUpdate(id,{ password: hash, }, { new: true });
+        const user = await User.findById(id);
         if(!user) {
             return res.status(404).json({
                 success: false,
                 message: "User not found",
             });
         }
-        // remove password and token
-        const { password, token, ...userData } = user._doc;
+        const isMatch = bcrypt.compareSync(password, user.password);
+        if(!isMatch) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid current password",
+            });
+        }
+        let salt = bcrypt.genSaltSync(10);
+        let hash = bcrypt.hashSync(new_password, salt);
+        await User.findByIdAndUpdate(id, {password: hash});
         res.status(200).json({
-        success: true,
-        message: "Password changed successfully",
-        user: userData,
+            success: true,
+            message: "Password changed successfully",
         });
+        
     } catch (error) {
         next(error);
     }
