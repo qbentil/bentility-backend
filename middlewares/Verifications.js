@@ -11,12 +11,21 @@ export const verifyAccessToken = (req, res, next) => {
 				next()
         }catch(err)
         {
-            next(CreateError("Invalid access token", 401));
+            // next(CreateError("Invalid access token", 401));
             // next(err)
+            res.status(401).json({
+                success: false,
+                message: "Invalid access token",
+                
+            });
         }
 	if (!token) {
-		next(CreateError("No access token", 401));
+		// next(CreateError("No access token", 401));
         // throw new Error("Unauthorized Access ")
+        res.status(401).json({
+            success: false,
+            message: "No access token",
+        })
 	}
 };
 export const verifySuperAdmin = (req, res, next) => {
@@ -28,19 +37,31 @@ export const verifySuperAdmin = (req, res, next) => {
                 if(decoded.role !== 'admin')
                 {
                     // throw new Error("Unauthorized Access ")
-                    next(CreateError("Unauthorized Access", 401));
+                    // next(CreateError("Unauthorized Access", 401));
+                    res.status(401).json({
+                        success: false,
+                        message: "Unauthorized Access",
+                    });
                 }
                 req.user = decoded;
                 next();
         }catch(err)
         {
             // next(err)
-            next(CreateError("Invalid access token", 401));
+            // next(CreateError("Invalid access token", 401));
+            res.status(401).json({
+                success: false,
+                message: "Invalid access token",
+            })
         }
 	if (!token) {
 		// CreateError("No token", 403);
         // throw new Error("Unauthorized Access ")
-        next(CreateError("No access token", 401));
+        // next(CreateError("No access token", 401));
+        res.status(401).json({
+            success: false,
+            message: "No access token",
+        })
         
 	}
 };
