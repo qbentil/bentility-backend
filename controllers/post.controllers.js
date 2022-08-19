@@ -58,7 +58,10 @@ const getPost = async (req, res, next) => {
         
         // throw error if post not found
         if (!post) {
-            next(createError("Post not found", 404));
+            return res.status(404).json({
+                success: false,
+                message: "Not found",
+            });
         }
         // remove isPublished property from response
         const { isPublished, ...rest } = post._doc;
