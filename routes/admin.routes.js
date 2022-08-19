@@ -3,8 +3,6 @@ import { addUser, changePassword, deleteUser, getUser, getUsers, updateUser } fr
 import { Router } from "express";
 
 const router = Router();
-// ADD USER
-router.post("/", addUser)
 
 // UPDATE USER
 router.put("/:id", updateUser)
