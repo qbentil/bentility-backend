@@ -91,13 +91,13 @@ export const deleteCategory = async (req, res, next) => {
 
 // GET SINGLE CATEOGRY
 export const getCategory = async (req, res, next) => {
-  const {key, value} = req.body;
-  console.log(req.body);
-  const keys = ["slug", "title"];
+  let {key, value} = req.body;
+  if(!key) key = "_id";
+  const keys = ["_id", "slug", "title"];
   if(!keys.includes(key)) {
       return res.status(400).json({
           success: false,
-          message: "Invalid query key <[slug, title]>",
+          message: "Invalid query key <[_id, slug, title]>",
       });
   }
 try {
