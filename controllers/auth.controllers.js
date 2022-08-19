@@ -21,13 +21,18 @@ export const AUTHENTICATION = async (req, res, next) => {
             });
         }
         // generate token
-        const tokens = GenerateToken(user);
+        const {access_token, refresh_token} = GenerateToken(user);
         
         // update token in user
-        const updated_user = await User.findByIdAndUpdate(user._id, { token: tokens.refresh_token }, { new: true });
+        await User.findByIdAndUpdate(user._id, { token: refresh_token });
+
+        // add refresh token to cookie
+        res.cookie("jwt", refresh_token, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000})
         
         // remove password and token
-        const { password, ...userData } = updated_user._doc;
+        const { password, token, ...userData } = user._doc;
+        
+        userData.access_token = access_token; // add access token to user data
         res.status(200).json({
             success: true,
             message: "User authenticated successfully",
