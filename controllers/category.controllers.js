@@ -1,4 +1,5 @@
 import Category from "../models/category.js";
+import Post from "../models/posts.js";
 
 // CREATE CATEOGRY
 export const createCategory = async (req, res, next) => {
@@ -72,6 +73,14 @@ export const updateCategory = async (req, res, next) => {
 export const deleteCategory = async (req, res, next) => {
   const { id } = req.params;
   try {
+    // check if category has posts
+    const posts = await Post.find({ category: id });
+    if (posts.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Category has posts",
+      });
+    }
     const category = await Category.findByIdAndDelete(id);
     if (!category) {
       return res.status(404).json({
@@ -82,8 +91,10 @@ export const deleteCategory = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Category deleted successfully",
-      category,
-    });
+      
+    })
+    
+    
   } catch (error) {
     next(error);
   }
