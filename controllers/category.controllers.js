@@ -2,6 +2,8 @@ import Category from "../models/category.js";
 
 // CREATE CATEOGRY
 export const createCategory = async (req, res, next) => {
+  req.body.user = req.user.id; // Append user id to req.body
+  console.log("category:", req.body);
   try {
     const category = new Category(req.body);
     await category.save();
