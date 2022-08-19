@@ -27,7 +27,7 @@ export const AUTHENTICATION = async (req, res, next) => {
         await User.findByIdAndUpdate(user._id, { token: refresh_token });
 
         // add refresh token to cookie
-        res.cookie("jwt", refresh_token, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000})
+        res.cookie("refresh_token", refresh_token, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000})
         
         // remove password and token
         const { password, token, ...userData } = user._doc;
