@@ -58,11 +58,12 @@ Describe your project
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
+- [JWT](https://jwt.io/)
 
 ## :white_check_mark: Requirements ##
 
@@ -78,12 +79,12 @@ $ git clone https://github.com/qbentil/bentility
 $ cd bentility
 
 # Install dependencies
-$ yarn
+$ npm install
 
 # Run the project
-$ yarn start
+$ npm 
 
-# The server will initialize in the <http://localhost:3000>
+# The server will initialize in the <http://localhost:8800>
 ```
 
 ## :memo: License ##

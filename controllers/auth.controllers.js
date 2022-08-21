@@ -6,6 +6,21 @@ import bcrypt from "bcryptjs";
 export const AUTHENTICATION = async (req, res, next) => {
     const { email, secret } = req.body;
     try {
+        // Check for secret
+        if(!secret){
+            return res.status(400).json({
+                success: false,
+                message: "Please provide password <key=secret>"
+            })
+
+        }
+        // Check for email
+        if(!email){
+            return res.status(400).json({
+                success: false,
+                message: "Please provide email"
+            })
+        }
         const user = await User.findOne({ email });
         if(!user) {
             return res.status(404).json({
