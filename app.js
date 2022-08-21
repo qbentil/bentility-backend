@@ -16,14 +16,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// HOME ROUTE
+// MIDDLEWARES
 app.use("/", HomeRoute);
 app.use("/user", verifyAccessToken, UserRoute);
 app.use("/categories", CategoryRoute);
 app.use("/posts", PostRoute)
 app.use("/auth", AuthRoute);
 
-// MIDDLEWARE
+// ERROR HANDLER MIDDLEWARE
 app.use(errorHandler)
 
 // run server
