@@ -6,6 +6,7 @@ import errorHandler from "./middlewares/ErrorHandler.js";
 import express from "express";
 import { verifyAccessToken } from './middlewares/Verifications.js';
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 // init dotenv
 dotenv.config();
@@ -14,6 +15,7 @@ dotenv.config();
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors({credentials: true, origin: true}))
 
 // MIDDLEWARES
 app.use("/", HomeRoute);
