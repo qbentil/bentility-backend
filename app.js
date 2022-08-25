@@ -1,20 +1,19 @@
 import { AuthRoute, CategoryRoute, HomeRoute, PostRoute, UserRoute } from "./routes/index.routes.js";
 
 import DBCONNECT from "./config/dbconnection.js";
-import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import errorHandler from "./middlewares/ErrorHandler.js";
 import express from "express";
 import { verifyAccessToken } from './middlewares/Verifications.js';
+import cookieParser from "cookie-parser";
 
 // init dotenv
 dotenv.config();
 
 // init app
 const app = express();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.json());
 
 // MIDDLEWARES
 app.use("/", HomeRoute);
