@@ -102,7 +102,7 @@ export const GETREFRESHTOKEN = async (req, res, next) => {
             const access_token = jwt.sign({id: decoded.id, role:decoded.role  }, process.env.JWT_SECRET || "", {expiresIn: "1d"}) 
             
             // remove refresh_token, role, password from user object
-                const {password, token, role, ...userData} = user._doc;
+                const {password, token, ...userData} = user._doc;
             // append access token to user
             userData.access_token = access_token
             res.status(201).json({
