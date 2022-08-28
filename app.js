@@ -15,7 +15,7 @@ dotenv.config();
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({credentials: true, origin:true, exposedHeaders: ['x-access-token', 'Set-Cookie', 'Date', 'ETag']}));
+app.use(cors({credentials: true, origin:true}));
 
 // MIDDLEWARES
 app.use("/", HomeRoute);
