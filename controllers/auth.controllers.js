@@ -44,7 +44,7 @@ export const AUTHENTICATION = async (req, res, next) => {
         const updatedUser = await User.findByIdAndUpdate(user._id, { token: refresh_token }, { new: true });
 
         // add refresh token to cookie
-        res.cookie("refresh_token", refresh_token, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000})
+        res.cookie("refresh_token", refresh_token, {httpOnly: true, sameSite:"none", maxAge: 24 * 60 * 60 * 1000, secure: true})
         
         // remove password and token
         const { password,token, ...userData } = updatedUser._doc;
