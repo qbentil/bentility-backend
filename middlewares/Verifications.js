@@ -7,61 +7,31 @@ export const verifyAccessToken = (req, res, next) => {
 			console.log("===>", req.headers["authorization"]);
 			token = req.headers.authorization?.split(" ")[1];
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-				req.user = decoded;
-				next()
+
+            // check if token is valid
+            if(!decoded){
+                return next(CreateError(401, "Invalid access token"));
+            }
+            // check if token is expired    
+            if(decoded.exp < Date.now() / 1000){
+                return next(CreateError("Token is expired", 401));
+            }
+
+            req.user = decoded;
+            next()
         }catch(err)
         {
-            // next(CreateError("Invalid access token", 401));
-            // next(err)
-            res.status(401).json({
-                success: false,
-                message: "Invalid access token",
-                
-            });
+            return next(CreateError("Invalid access token", 401));
+
         }
 	if (!token) {
-		// next(CreateError("No access token", 401));
-        // throw new Error("Unauthorized Access ")
-        res.status(401).json({
-            success: false,
-            message: "No access token",
-        })
+		return next(CreateError("No access token", 401));
+ 
 	}
 };
 export const verifySuperAdmin = (req, res, next) => {
-	let token;
-	try{
-			console.log(req.headers["authorization"]);
-			token = req.headers.authorization?.split(" ")[1];
-            const decoded = jwt.verify(token, process.env.JWT_SECRET)
-                if(decoded.role !== 'admin')
-                {
-                    // throw new Error("Unauthorized Access ")
-                    // next(CreateError("Unauthorized Access", 401));
-                    res.status(401).json({
-                        success: false,
-                        message: "Unauthorized Access",
-                    });
-                }
-                req.user = decoded;
-                next();
-        }catch(err)
-        {
-            // next(err)
-            // next(CreateError("Invalid access token", 401));
-            res.status(401).json({
-                success: false,
-                message: "Invalid access token",
-            })
-        }
-	if (!token) {
-		// CreateError("No token", 403);
-        // throw new Error("Unauthorized Access ")
-        // next(CreateError("No access token", 401));
-        res.status(401).json({
-            success: false,
-            message: "No access token",
-        })
-        
-	}
-};
+    if (req.user && req.user.role !== "admin") {
+        return next(CreateError("Unauthorized Access", 401));
+    }
+    next();
+}
