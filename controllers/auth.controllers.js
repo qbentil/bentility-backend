@@ -53,7 +53,7 @@ export const AUTHENTICATION = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "User authenticated successfully",
-            user: userData,
+            data: userData,
         });
     } catch (error) {
         next(error);
@@ -107,7 +107,7 @@ export const GETREFRESHTOKEN = async (req, res, next) => {
             userData.access_token = access_token
             res.status(201).json({
                 success: true,
-                user:userData,
+                data:userData,
                 message: "new token generated"
             })  
             

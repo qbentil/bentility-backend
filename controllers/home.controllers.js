@@ -6,27 +6,27 @@ export const HomeController = (req, res, next) => {
       endpoints: [
         {
           method: "GET",
-          path: "/api/v1/posts",
+          path: "/posts",
           description: "Get all posts",
         },
         {
           method: "POST",
-          path: "/api/v1/posts",
+          path: "/posts",
           description: "Create a new post",
         },
         {
           method: "GET",
-          path: "/api/v1/posts/:postId",
+          path: "/posts/:postId",
           description: "Get a post by id",
         },
         {
           method: "PUT",
-          path: "/api/v1/posts/:postId",
+          path: "/posts/:postId",
           description: "Update a post by id",
         },
         {
           method: "DELETE",
-          path: "/api/v1/posts/:postId",
+          path: "/posts/:postId",
           description: "Delete a post by id",
         },
       ],
