@@ -15,7 +15,7 @@ export const createCategory = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "Category added successfully",
-      category: rest,
+      data: rest,
     });
   } catch (error) {
     next(error);
@@ -37,7 +37,7 @@ export const getCategories = async (req, res, next) => {
       success: true,
       message: "Categories retrieved successfully",
       total: categories.length,
-      categories: categoriesData,
+      data: categoriesData,
     });
   } catch (error) {
     next(error);
@@ -62,7 +62,7 @@ export const updateCategory = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Category updated successfully",
-      category: rest,
+      data: rest,
     });
   } catch (error) {
     next(error);
@@ -122,7 +122,7 @@ try {
   res.status(200).json({
       success: true,
       message: "User retrieved successfully",
-      user: category,
+      data: category,
   });
 
   

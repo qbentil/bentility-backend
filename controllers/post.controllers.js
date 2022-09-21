@@ -13,7 +13,7 @@ const createPost = async (req, res, next) => {
         res.status(201).json({
             success: true,
             message: "Post added successfully",
-            post: rest,
+            data: rest,
         })
     } catch (error) {
         next(error);
@@ -35,7 +35,7 @@ const getPosts = async (req, res, next) => {
             success: true,
             message: "Posts retrieved successfully",
             total: posts.length,
-            posts: postsData,
+            data: postsData,
         });
     } catch (error) {
         next(error);
@@ -69,7 +69,7 @@ const getPost = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "Post retrieved successfully",
-            post: rest,
+            data: rest,
         });
     } catch (error) {
         next(error);
@@ -95,7 +95,7 @@ const updatePost = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "Post updated successfully",
-            post: rest,
+            data: rest,
         });
     } catch (error) {
         next(error);

@@ -17,7 +17,7 @@ export const deleteUser = async (req, res, next) => {
     res.status(200).json({
         success: true,
         message: "User deleted successfully",
-        user: userData,
+        data: userData,
     });
   } catch (error) {
     next(error);
@@ -51,7 +51,7 @@ export const getUsers = async (req, res, next) => {
         success: true,
         message: "Users retrieved successfully",
         total: users.length,
-        users: usersData,
+        data: usersData,
     });
   } catch (error) {
     next(error);
@@ -82,7 +82,7 @@ export const getUser = async (req, res, next) => {
     res.status(200).json({
         success: true,
         message: "User retrieved successfully",
-        user: userData,
+        data: userData,
     });
 
     
@@ -111,7 +111,7 @@ export const changePassword = async (req, res, next) => {
         res.status(200).json({
         success: true,
         message: "Password changed successfully",
-        user: userData,
+        data: userData,
         });
     } catch (error) {
         next(error);
