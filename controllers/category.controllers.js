@@ -1,21 +1,22 @@
 import Category from "../models/category.js";
 import Post from "../models/posts.js";
+import createError from "../utils/Error.js";
 
 // CREATE CATEOGRY
 export const createCategory = async (req, res, next) => {
   req.body.user = req.user.id; // Append user id to req.body
-  console.log("category:", req.body);
+  // console.log("category:", req.body);
   try {
     const category = new Category(req.body);
     await category.save();
 
     // remove isPublished property from response
-    const { isPublished, ...rest } = category.toObject();
+    // const { isPublished, ...rest } = category.toObject();
 
     res.status(201).json({
       success: true,
       message: "Category added successfully",
-      data: rest,
+      data: category,
     });
   } catch (error) {
     next(error);
@@ -28,16 +29,16 @@ export const getCategories = async (req, res, next) => {
     const categories = await Category.find({});
 
     // remove isPublished property from response
-    const categoriesData = categories.map((category) => {
-      const { isPublished, ...rest } = category._doc;
-      return rest;
-    });
+    // const categoriesData = categories.map((category) => {
+    //   const { isPublished, ...rest } = category._doc;
+    //   return rest;
+    // });
 
     res.status(200).json({
       success: true,
       message: "Categories retrieved successfully",
       total: categories.length,
-      data: categoriesData,
+      data: categories,
     });
   } catch (error) {
     next(error);
@@ -58,11 +59,10 @@ export const updateCategory = async (req, res, next) => {
       });
     }
     // remove isPublished property from response
-    const { isPublished, ...rest } = category._doc;
     res.status(200).json({
       success: true,
       message: "Category updated successfully",
-      data: rest,
+      data: category,
     });
   } catch (error) {
     next(error);
@@ -102,15 +102,15 @@ export const deleteCategory = async (req, res, next) => {
 
 // GET SINGLE CATEOGRY
 export const getCategory = async (req, res, next) => {
-  let {key, value} = req.body;
+  let {key, value} = req.query;
   if(!key) key = "_id";
   const keys = ["_id", "slug", "title"];
   if(!keys.includes(key)) {
-      return res.status(400).json({
-          success: false,
-          message: "Invalid query key <[_id, slug, title]>",
-      });
+    return next(createError("Invalid query key <[_id, slug, title]>", 400));
   }
+ if(!value) {
+    return next(createError("Key Value is required", 400));
+ }
 try {
   const category = await Category.findOne({[key]: value});
   if(!category) {

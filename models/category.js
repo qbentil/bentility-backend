@@ -22,8 +22,9 @@ const CategorySchema = new Schema({
         ref: 'User',
         required: [true, 'User is required']
     },
-    image: {
+    imageURL: {
         type: String,
+        required: [true, 'Image URL is required']
     },
     color: {
         type: String,
