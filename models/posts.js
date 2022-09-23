@@ -18,10 +18,10 @@ const PostSchema = new Schema({
         unique: true
         
     },
-    category: {
-        type: Schema.Types.ObjectId,
+    categories: {
+        type: [Schema.Types.ObjectId],
         ref: 'Category',
-        required: [true, 'Category is required']
+        required: [true, 'Categories is required']
     },
     views: {
         type: Number,
