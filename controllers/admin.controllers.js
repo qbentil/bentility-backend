@@ -1,6 +1,60 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
+import createError from "../utils/Error.js";
 
+// ADD USER
+export const addUser = async (req, res, next) => {
+  const { username, email, name, role, about, phone, avatar } = req.body;
+  const password = "default";
+  let salt = bcrypt.genSaltSync(10);
+  let hash = bcrypt.hashSync(password, salt);
+  try {
+    const user = new User({
+      username,
+      email,
+      password: hash,
+      name,
+      role,
+      about,
+      phone,
+      avatar,
+    });
+    await user.save();
+
+    // remove password and token
+    const { password, token, ...userData } = user._doc;
+    res.status(201).json({
+      success: true,
+      message: "User added successfully",
+      data: userData,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+// UPDATE USER
+export const updateUser = async (req, res, next) => {
+  const { id } = req.params;
+  const { name, about, phone } = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(
+      id,
+      {
+        name,
+        about,
+        phone
+      },{ new: true });
+    // remove password and token
+    const { password, token, ...userData } = user._doc;
+    res.status(200).json({
+      success: true,
+      message: "User updated successfully",
+      data: userData,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 // DELETE USER
 export const deleteUser = async (req, res, next) => {
   const { id } = req.user;
@@ -26,13 +80,16 @@ export const deleteUser = async (req, res, next) => {
 
 // GET USERS
 export const getUsers = async (req, res, next) => {
-  const {key, value} = req.body;
-  const keys = ["name", "role", "about"];
+  const {key, value} = req.query;
+  const keys = ["username", "role", "about"];
   if(key && !keys.includes(key)) {
     return res.status(400).json({
       success: false,
       message: "Invalid key",
     });
+  }
+  if(key && !value) {
+    return next(createError("Invalid query value", 400));
   }
   try {
     const users = key? await User.find({[key]: value}): await User.find();

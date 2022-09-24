@@ -1,4 +1,4 @@
-import { AuthRoute, CategoryRoute, HomeRoute, PostRoute, UserRoute } from "./routes/index.routes.js";
+import { AdminRoute, AuthRoute, CategoryRoute, HomeRoute, PostRoute, UserRoute } from "./routes/index.routes.js";
 
 import DBCONNECT from "./config/dbconnection.js";
 import dotenv from "dotenv";
@@ -20,6 +20,7 @@ app.use(cors({credentials: true, origin:true}));
 // MIDDLEWARES
 app.use("/", HomeRoute);
 app.use("/user", verifyAccessToken, UserRoute);
+app.use("/admin", verifyAccessToken, AdminRoute);
 app.use("/categories", CategoryRoute);
 app.use("/posts", PostRoute)
 app.use("/auth", AuthRoute);

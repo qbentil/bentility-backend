@@ -1,13 +1,10 @@
-import { addUser, changeAvatar, changePassword, deleteUser, getUser, updateUser } from "../controllers/user.controllers.js";
+import {  changeAvatar, changePassword, deleteUser, getUser, updateUser } from "../controllers/user.controllers.js";
 
 import { Router } from "express";
-import { verifySuperAdmin } from "../middlewares/Verifications.js";
 
 const router = Router();
 
 
-// ADD USER
-router.post("/", verifySuperAdmin , addUser)
 // UPDATE USER
 router.put("/", updateUser)
 
