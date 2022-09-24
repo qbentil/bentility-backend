@@ -44,7 +44,7 @@ const getPosts = async (req, res, next) => {
 
 // READ POST BY ID
 const getPost = async (req, res, next) => {
-    let {key, value} = req.body;
+    let {key, value} = req.params;
     if(!key) key = "_id";
     const keys = ["_id", "title", "writer", "createdAt"];
     if(!keys.includes(key)) {
@@ -52,6 +52,9 @@ const getPost = async (req, res, next) => {
             success: false,
             message: "Invalid query key <[_id, title, writer, createdAt]>",
         });
+    }
+    if(!value) {
+        return next(createError("Invalid query value",400));
     }
     try {
         const post = await Post.findOne({[key]: value});
