@@ -1,36 +1,6 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 
-// ADD USER
-export const addUser = async (req, res, next) => {
-  const { username, email, name, role, about, phone, avatar } = req.body;
-  const password = "default";
-  let salt = bcrypt.genSaltSync(10);
-  let hash = bcrypt.hashSync(password, salt);
-  try {
-    const user = new User({
-      username,
-      email,
-      password: hash,
-      name,
-      role,
-      about,
-      phone,
-      avatar,
-    });
-    await user.save();
-
-    // remove password and token
-    const { password, token, ...userData } = user._doc;
-    res.status(201).json({
-      success: true,
-      message: "User added successfully",
-      data: userData,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
 
 // UPDATE USER
 export const updateUser = async (req, res, next) => {
