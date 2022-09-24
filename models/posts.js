@@ -19,8 +19,12 @@ const PostSchema = new Schema({
         
     },
     categories: {
-        type: [Schema.Types.ObjectId],
-        ref: 'Category',
+        type: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Category'
+            }
+        ],
         required: [true, 'Categories is required']
     },
     views: {
