@@ -1,3 +1,5 @@
+import SendMail from "../mail/index.js";
+
 export const HomeController = (req, res, next) => {
     res.json({
       message: "Welcome to the Bentility Blog API",
@@ -34,4 +36,24 @@ export const HomeController = (req, res, next) => {
       author_url: "https://qbentil.com",
       
     });
+}
+
+export const TestEmail = async (req, res, next) => {
+  try {
+    const user = {
+      name: "Shadrack Bentil",
+      email: "sbentil005@st.ug.edu.gh",
+      username: "sbentil005",
+      password: "123456",
+      role: "admin",
+    }
+    SendMail(user, (info)=> {
+      res.status(200).json({
+        message: "Email sent successfully",
+        info
+      })
+    })
+  }catch (error) {
+    next(error);
   }
+}

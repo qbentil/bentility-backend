@@ -1,7 +1,6 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 
-
 // UPDATE USER
 export const updateUser = async (req, res, next) => {
   const { id } = req.user;
@@ -130,7 +129,7 @@ export const changePassword = async (req, res, next) => {
         }
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(new_password, salt);
-        await User.findByIdAndUpdate(id, {password: hash});
+        await User.findByIdAndUpdate(id, {password: hash, confirmed: true});
         res.status(200).json({
             success: true,
             message: "Password changed successfully",
