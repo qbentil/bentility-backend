@@ -7,7 +7,7 @@ import createError from "../utils/Error.js";
 export const addUser = async (req, res, next) => {
   const { username, email, name, role, about, phone, avatar } = req.body;
   // generate random 8 digit password
-  const password = (Math.floor(10000000 + Math.random() * 90000000)).toString();
+  const password = Math.floor(10000000 + Math.random() * 90000000).toString();
   let salt = bcrypt.genSaltSync(10);
   let hash = bcrypt.hashSync(password, salt);
   try {
@@ -198,7 +198,7 @@ export const resetPassword = async (req, res, next) => {
   try {
     const user = await User.findByIdAndUpdate(
       id,
-      { password: hash },
+      { password: hash, confirmed: false },
       { new: true }
     );
     if (!user) {
