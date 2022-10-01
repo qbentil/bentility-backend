@@ -1,4 +1,4 @@
-import SendMail from "../mail/index.js";
+import Mail from "../mail/index.js";
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import createError from "../utils/Error.js";
@@ -30,7 +30,7 @@ export const addUser = async (req, res, next) => {
       username,
       role,
     };
-    SendMail(data, (info) => {
+    Mail.OnboardingMail(data, (info) => {
       // remove password and token
       const { password, token, ...userData } = user._doc;
       res.status(201).json({

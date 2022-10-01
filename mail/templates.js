@@ -1,5 +1,5 @@
-const text = (user) => {
-    const { name, username, password, role } = user;
+const WelcomeTEXT = (user) => {
+    const { name, username, password, role, site } = user;
     return `
     Hello  ${name} - [${username}]!
 
@@ -10,13 +10,16 @@ const text = (user) => {
     Your password is: ${password}
         
     
-    NB! Make sure to change your password after your first login.
+    NB! Make sure to change your password after your first login. <br/> <br/>
+
+    Login here: ${site}/admin <br/>
+    Or visit blog here: ${site}/ <br/> <br/>
     
     Regards,
     Bentility Team`;
 }
-const html = (user) => {
-    const { name, username, password, role } = user;
+const WelcomeHTML = (user) => {
+    const { name, username, password, role, site } = user;
     return `
     Hello  <i>${name} - [${username}]</i>! <br/>
 
@@ -28,14 +31,25 @@ const html = (user) => {
         
     
     <b>NB!</b> Make sure to change your password after your first login.   <br/> <br/>
+
+    Login here: <a href="${site}/admin">${site}/admin</a> <br/>
+    Or visit blog here: <a href="${site}/">${site}/</a> <br/> <br/>
     
     Regards,<br/>
     Bentility Team`;
 }
 
-const  WelcomeMessage = {
-    text,
-    html
+const HTML = (data) => {
+    return `
+    <h1>${data.subject}</h1>
+    <p>${data.message}</p>
+    `;
 }
 
-export default WelcomeMessage;
+const  Templates = {
+    WelcomeTEXT,
+    WelcomeHTML,
+    HTML
+}
+
+export default Templates;
