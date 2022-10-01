@@ -1,4 +1,4 @@
-import { HomeController, TestEmail } from '../controllers/home.controllers.js';
+import { HomeController, SENDMAIL, getUsers } from '../controllers/home.controllers.js';
 
 import express from 'express';
 
@@ -7,8 +7,11 @@ const router = express.Router();
 
 router.get('/', HomeController);
 
+// get users
+router.get("/users", getUsers)
+
 // SEND EMAIL
-router.post("/email", TestEmail)
+router.post("/email", SENDMAIL)
   
 // export router
 export default router;
