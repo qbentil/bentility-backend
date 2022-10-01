@@ -1,13 +1,13 @@
-import WelcomeMessage from "./welcome.js";
+import Templates from "./templates.js";
 import transporter from "./transport.js";
 
-const SendMail = async (user, callback) => {
+const OnboardingMail = async (user, callback) => {
   const mailOptions = {
     from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_ID}>`,
     to: user.email,
     subject: "Welcome to Bentility Team",
-    text: WelcomeMessage.text(user),
-    html: WelcomeMessage.html(user),
+    text: Templates.WelcomeTEXT(user),
+    html: Templates.WelcomeHTML(user),
   };
   try {
     const info = await transporter.sendMail(mailOptions);
@@ -17,4 +17,26 @@ const SendMail = async (user, callback) => {
   }
 };
 
-export default SendMail;
+const SendMail = async (data, callback) => {
+  const mailOptions = {
+    from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_ID}>`,
+    to: data.email,
+    subject: data.subject,
+    text: data.message,
+    html: Templates.HTML(data),
+  };
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    callback(info);
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+const Mail = {
+  OnboardingMail,
+  SendMail
+}
+
+export default Mail;
+
