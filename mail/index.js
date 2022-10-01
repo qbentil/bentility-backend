@@ -2,6 +2,8 @@ import Templates from "./templates.js";
 import transporter from "./transport.js";
 
 const OnboardingMail = async (user, callback) => {
+  // add site url to user object
+  user.site = process.env.SITE_URL;
   const mailOptions = {
     from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_ID}>`,
     to: user.email,

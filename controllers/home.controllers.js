@@ -49,6 +49,7 @@ export const SENDMAIL = async (req, res, next) => {
     }
     Mail.SendMail(data, (info)=> {
       res.status(200).json({
+        success: true,
         message: "Email sent successfully",
         info
       })
