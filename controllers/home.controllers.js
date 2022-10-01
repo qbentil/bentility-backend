@@ -1,4 +1,5 @@
-import SendMail from "../mail/index.js";
+import Mail from "../mail/index.js";
+import User from "../models/user.js";
 
 export const HomeController = (req, res, next) => {
     res.json({
@@ -38,16 +39,15 @@ export const HomeController = (req, res, next) => {
     });
 }
 
-export const TestEmail = async (req, res, next) => {
+export const SENDMAIL = async (req, res, next) => {
   try {
-    const user = {
-      name: "Shadrack Bentil",
-      email: "sbentil005@st.ug.edu.gh",
-      username: "sbentil005",
-      password: "123456",
-      role: "admin",
+    const data = {
+      email: req.body.email,
+      subject: req.body.subject,
+      message: req.body.message,
+
     }
-    SendMail(user, (info)=> {
+    Mail.SendMail(data, (info)=> {
       res.status(200).json({
         message: "Email sent successfully",
         info
@@ -57,3 +57,24 @@ export const TestEmail = async (req, res, next) => {
     next(error);
   }
 }
+
+// get users
+export const getUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+
+    // remove password, role, token, confirmed, createdAt, updatedAt, __v from users
+    const usersWithoutSensitiveData = users.map((user) => {
+      const { password, role, token, confirmed, createdAt, updatedAt, __v, ...data } = user._doc;
+      return data;
+    })
+    res.status(200).json({
+      success: true,
+      message: "Users fetched successfully",
+      data:usersWithoutSensitiveData
+    })
+  }catch (error) {
+    next(error);
+  }
+}
+
