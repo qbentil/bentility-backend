@@ -1,4 +1,4 @@
-const text = (user) => {
+const WelcomeTEXT = (user) => {
     const { name, username, password, role } = user;
     return `
     Hello  ${name} - [${username}]!
@@ -15,7 +15,7 @@ const text = (user) => {
     Regards,
     Bentility Team`;
 }
-const html = (user) => {
+const WelcomeHTML = (user) => {
     const { name, username, password, role } = user;
     return `
     Hello  <i>${name} - [${username}]</i>! <br/>
@@ -33,9 +33,17 @@ const html = (user) => {
     Bentility Team`;
 }
 
-const  WelcomeMessage = {
-    text,
-    html
+const HTML = (data) => {
+    return `
+    <h1>${data.subject}</h1>
+    <p>${data.message}</p>
+    `;
 }
 
-export default WelcomeMessage;
+const  Templates = {
+    WelcomeTEXT,
+    WelcomeHTML,
+    HTML
+}
+
+export default Templates;
