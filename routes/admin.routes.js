@@ -1,4 +1,4 @@
-import { addUser, changePassword, deleteUser, getUser, getUsers, resetPassword, updateUser } from "../controllers/admin.controllers.js";
+import { addUser,  deleteUser, getUser, getUsers, resetPassword, updateUser } from "../controllers/admin.controllers.js";
 
 import { Router } from "express";
 import { verifySuperAdmin } from "../middlewares/Verifications.js";
@@ -20,10 +20,7 @@ router.get("/", getUsers)
 router.get("/user", getUser)
 
 
-// CHANGE PASSWORD
-router.patch("/password/:id", changePassword)
-
-// reset password
+// RESET PASSWORD
 router.patch("/resetpassword/:id", resetPassword)
 
 
