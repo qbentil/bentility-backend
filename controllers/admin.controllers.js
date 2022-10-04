@@ -186,7 +186,8 @@ export const changePassword = async (req, res, next) => {
 // RESET PASSWORD
 export const resetPassword = async (req, res, next) => {
   const { id } = req.params;
-  const { password } = req.body;
+  // generate random 8 digit password
+  const password = Math.floor(10000000 + Math.random() * 90000000).toString();
   let salt = bcrypt.genSaltSync(10);
   let hash = bcrypt.hashSync(password, salt);
   try {
@@ -201,12 +202,31 @@ export const resetPassword = async (req, res, next) => {
         message: "User not found",
       });
     }
-    // remove password and token
-    const { password, token, ...userData } = user._doc;
-    res.status(200).json({
-      success: true,
-      message: "Password reset successfully",
-      data: userData,
+    // send reset password email
+    const data = {
+      email: user.email,
+      subject: "Password Reset <no-reply>",
+      message: `
+        <h3>Hi ${user.name},</h3> <br />
+        <p>Your password has been reset to <b>${password}</b></p> <br />
+        <p>Please login to your account and change your password</p>  <br />
+        <p>Thank you</p> <br /> <br />
+
+        <p>Regards,</p> <br />
+        <p>Team <b>Bentility</b></p> <br /> <br />
+
+        <p><small><i>This is an auto-generated email, please do not reply</i></small></p>
+
+      `,
+    };
+    Mail.SendMail(data, (info) => {
+      // remove password and token
+      const { password, token, ...userData } = user._doc;
+      res.status(200).json({
+        success: true,
+        message: "Password reset successfully",
+        // data: userData,
+      });
     });
   } catch (error) {
     next(error);
@@ -218,14 +238,13 @@ export const changeAvatar = async (req, res, next) => {
   const { id } = req.params;
   const { avatar } = req.body;
   try {
-      const user = await User.findByIdAndUpdate(id, {avatar});
-      res.status(200).json({
-          success: true,
-          message: "Avatar changed successfully",
-          data: user,
-      });
-      
+    const user = await User.findByIdAndUpdate(id, { avatar });
+    res.status(200).json({
+      success: true,
+      message: "Avatar changed successfully",
+      data: user,
+    });
   } catch (error) {
-      next(error);
+    next(error);
   }
-}
+};
