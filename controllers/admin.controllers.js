@@ -46,17 +46,9 @@ export const addUser = async (req, res, next) => {
 // UPDATE USER
 export const updateUser = async (req, res, next) => {
   const { id } = req.params;
-  const { name, about, phone } = req.body;
+  // const { name, about, phone } = req.body;
   try {
-    const user = await User.findByIdAndUpdate(
-      id,
-      {
-        name,
-        about,
-        phone,
-      },
-      { new: true }
-    );
+    const user = await User.findByIdAndUpdate(id, req.body, { new: true });
     // remove password and token
     const { password, token, ...userData } = user._doc;
     res.status(200).json({

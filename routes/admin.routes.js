@@ -8,10 +8,10 @@ const router = Router();
 // ADD USER
 router.post("/", verifySuperAdmin , addUser)
 // UPDATE USER
-router.put("/:id", updateUser)
+router.put("/:id", verifySuperAdmin, updateUser)
 
 // DELETE USER
-router.delete("/:id", deleteUser)
+router.delete("/:id", verifySuperAdmin, deleteUser)
 
 // GET USERS
 router.get("/", getUsers)
