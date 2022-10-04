@@ -207,13 +207,13 @@ export const resetPassword = async (req, res, next) => {
       email: user.email,
       subject: "Password Reset <no-reply>",
       message: `
-        <h3>Hi ${user.name},</h3> <br />
-        <p>Your password has been reset to <b>${password}</b></p> <br />
-        <p>Please login to your account and change your password</p>  <br />
-        <p>Thank you</p> <br /> <br />
+        <h3>Hi ${user.name},</h3> 
+        <p>Your password has been reset to <b>${password}</b></p> 
+        <p>Please login to your account and change your password</p>  
+        <p>Thank you</p>  
 
-        <p>Regards,</p> <br />
-        <p>Team <b>Bentility</b></p> <br /> <br />
+        <p>Regards,</p> 
+        <p>Team <b>Bentility</b></p>  
 
         <p><small><i>This is an auto-generated email, please do not reply</i></small></p>
 
