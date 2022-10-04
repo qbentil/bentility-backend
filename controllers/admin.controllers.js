@@ -210,3 +210,20 @@ export const resetPassword = async (req, res, next) => {
     next(error);
   }
 };
+
+// CHANGE AVATAR
+export const changeAvatar = async (req, res, next) => {
+  const { id } = req.params;
+  const { avatar } = req.body;
+  try {
+      const user = await User.findByIdAndUpdate(id, {avatar});
+      res.status(200).json({
+          success: true,
+          message: "Avatar changed successfully",
+          data: user,
+      });
+      
+  } catch (error) {
+      next(error);
+  }
+}
