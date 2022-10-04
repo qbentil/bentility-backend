@@ -122,14 +122,16 @@ export const getUsers = async (req, res, next) => {
 
 // GET SINGLE USER
 export const getUser = async (req, res, next) => {
-  const { key, value } = req.body;
-  // console.log(req.body);
+  const { key, value } = req.query;
   const keys = ["username", "email", "phone"];
   if (!keys.includes(key)) {
     return res.status(400).json({
       success: false,
       message: "Invalid query key <[username, email, phone]>",
     });
+  }
+  if (key && !value) {
+    return next(createError("Invalid query value", 400));
   }
   try {
     const user = await User.findOne({ [key]: value });
