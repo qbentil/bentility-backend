@@ -36,10 +36,13 @@ const PostSchema = new Schema({
         ref: 'User',
         required: [true, 'Writer is required']
     },
-    isPublished: {
-        type: Boolean,
-        default: false
-    },
+    status: {
+        type: String,
+        enum: ["published", "draft"],
+        required: [true, 'Post status is required'],
+        default: 'published'
+    }
+    
     
 }, { timestamps: true });
 
