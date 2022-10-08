@@ -39,7 +39,8 @@ const PostSchema = new Schema({
     status: {
         type: String,
         enum: ["published", "draft"],
-        required: [true, 'Post status is required']
+        required: [true, 'Post status is required'],
+        default: 'published'
     }
     
     
