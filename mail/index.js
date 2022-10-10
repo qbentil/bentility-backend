@@ -35,9 +35,26 @@ const SendMail = async (data, callback) => {
   }
 }
 
+const ContactMail = async (data, callback) => {
+  const mailOptions = {
+    from: `${data.name} <${data.email}>`,
+    to: process.env.EMAIL_ID,
+    subject: data.subject,
+    text: data.message,
+    html: data.htmlText,
+  };
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    callback(info);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const Mail = {
   OnboardingMail,
-  SendMail
+  SendMail,
+  CONTACTMAIL: ContactMail,
 }
 
 export default Mail;

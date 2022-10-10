@@ -45,7 +45,7 @@ export const SENDMAIL = async (req, res, next) => {
       email: req.body.email,
       subject: req.body.subject,
       message: req.body.message,
-
+      
     }
     Mail.SendMail(data, (info)=> {
       res.status(200).json({
@@ -78,4 +78,42 @@ export const getUsers = async (req, res, next) => {
     next(error);
   }
 }
+
+export const CONTACTMAIL = async (req, res, next) => {
+  try {
+    const data = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      phone: req.body.phone || "Not provided",
+      subject: req.body.subject,
+      message: req.body.message,
+      name: req.body.first_name + " " + req.body.last_name,
+      htmlText: `
+      ${process.env.EMAIL_NAME} CONTACT FORM
+      
+      <h1>Message from ${req.body.first_name} ${req.body.last_name}</h1>
+      <p>Phone: ${req.body.phone || "Not provided"}</p>
+      <p>Email: ${req.body.email}</p>
+      <p>Subject: ${req.body.subject}</p>
+      <p>Message: ${req.body.message}</p>
+      
+      Secured by Bentility API (MAILER)
+      
+      Regards,
+      Bentility Team
+      
+      `
+    }
+    Mail.CONTACTMAIL(data, (info)=> {
+      res.status(200).json({
+        success: true,
+        message: "Email sent successfully",
+        info
+      })
+    })
+  }catch (error) {
+    next(error);
+  }
+};
 
