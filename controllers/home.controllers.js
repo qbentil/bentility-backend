@@ -98,10 +98,12 @@ export const CONTACTMAIL = async (req, res, next) => {
       <p>Subject: ${req.body.subject}</p>
       <p>Message: ${req.body.message}</p>
       
-      Secured by Bentility API (MAILER)
+      <p>Secured by Bentility (MAILER) </p>
       
-      Regards,
-      Bentility Team
+      Regards, <br>
+      Bentility Team <br> <br>
+
+      <small>Powered by Bentility API</small>
       
       `
     }
