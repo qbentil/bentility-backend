@@ -28,12 +28,6 @@ export const getCategories = async (req, res, next) => {
   try {
     const categories = await Category.find({});
 
-    // remove isPublished property from response
-    // const categoriesData = categories.map((category) => {
-    //   const { isPublished, ...rest } = category._doc;
-    //   return rest;
-    // });
-
     res.status(200).json({
       success: true,
       message: "Categories retrieved successfully",
@@ -129,4 +123,54 @@ try {
 } catch (error) {
   next(error);
 }
+};
+
+// PUBLISH CATEGORY
+export const publishCategory = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const category = await Category.findByIdAndUpdate(
+      id,
+      { status: "published" },
+      { new: true }
+    );
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: "Category not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Category published successfully",
+      data: category,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// UNPUBLISH CATEGORY
+export const unpublishCategory = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const category = await Category.findByIdAndUpdate(
+      id,
+      { status: "draft" },
+      { new: true }
+    );
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: "Category not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Category unpublished successfully",
+      data: category,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
