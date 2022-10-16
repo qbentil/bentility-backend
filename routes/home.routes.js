@@ -1,4 +1,4 @@
-import { HomeController, SENDMAIL, getUsers } from '../controllers/home.controllers.js';
+import { CONTACTMAIL, HomeController, SENDMAIL, getUsers } from '../controllers/home.controllers.js';
 
 import express from 'express';
 
@@ -12,6 +12,9 @@ router.get("/users", getUsers)
 
 // SEND EMAIL
 router.post("/email", SENDMAIL)
+
+// CONTACT FORM
+router.post("/contact", CONTACTMAIL)
   
 // export router
 export default router;
