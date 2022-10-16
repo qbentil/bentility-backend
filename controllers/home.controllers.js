@@ -76,12 +76,11 @@ export const PUBLIC_SENDMAIL = async (req, res, next) => {
       message: `
         <p>${message}</p>
 
-        <p>Regards,</p>
-        <p>${sender_name}</p>
-        <p>${sender_email || ''}</p>
+        Regards, <br>
+        ${sender_name}<br>
+        ${sender_email || ''}<br> <br>
 
-
-        <small><i>This mailer is powered by <a href="https://bentility-api.herokuapp.com">Bentility API</a></i></small> <br />
+        <small><i>This mailer is powered by <a href="https://bentility-api.herokuapp.com">Bentility (Mailer)</a></i></small> <br />
         <small>Made with ❤ by <i>
         <a href="https://qbentil.com">Shadrack Bentil</a></i></small>
       `,
@@ -125,4 +124,45 @@ export const getUsers = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+}
+
+export const CONTACTMAIL = async (req, res, next) => {
+  try {
+    const data = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      phone: req.body.phone || "Not provided",
+      subject: req.body.subject,
+      message: req.body.message,
+      name: req.body.first_name + " " + req.body.last_name,
+      htmlText: `
+      ${process.env.EMAIL_NAME} CONTACT FORM
+      
+      <h1>Message from ${req.body.first_name} ${req.body.last_name}</h1>
+      <p>Phone: ${req.body.phone || "Not provided"}</p>
+      <p>Email: ${req.body.email}</p>
+      <p>Subject: ${req.body.subject}</p>
+      <p>Message: ${req.body.message}</p>
+      
+      <p>Secured by Bentility (MAILER) </p>
+      
+      Regards, <br>
+      Bentility Team <br> <br>
+
+      <small>Powered by Bentility API</small>
+      
+      `
+    }
+    Mail.CONTACTMAIL(data, (info)=> {
+      res.status(200).json({
+        success: true,
+        message: "Email sent successfully",
+        info
+      })
+    })
+  }catch (error) {
+    next(error);
+  }
 };
+

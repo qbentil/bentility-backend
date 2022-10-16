@@ -30,10 +30,12 @@ const CategorySchema = new Schema({
         type: String,
         default: '#fff'
     },
-    isPublished: {
-        type: Boolean,
-        default: false
-    },
+    status: {
+        type: String,
+        enum: ["published", "draft"],
+        required: [true, 'category status is required'],
+        default: 'published'
+    }
     
 }, { timestamps: true });
 
