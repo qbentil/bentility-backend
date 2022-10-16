@@ -34,10 +34,27 @@ const SendMail = async (data, callback) => {
     throw new Error(error);
   }
 }
+const publicMail = async (data, callback) => {
+  const mailOptions = {
+    from: `${data.sender_name} <${data.sender_email}>`,
+    to: data.email,
+    subject: data.subject,
+    text: data.message,
+    html: Templates.HTML(data),
+  };
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    callback(info);
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
 
 const Mail = {
   OnboardingMail,
-  SendMail
+  SendMail,
+  publicMailer: publicMail,
 }
 
 export default Mail;
