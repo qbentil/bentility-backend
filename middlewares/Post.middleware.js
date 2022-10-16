@@ -11,14 +11,15 @@ export const verifyPostOwner = async (req, res, next) => {
       });
     }
     // Check if the user is the owner of the post || the user is an admin
-    if (post.writer.toString() !== req.user.id || req.user.role !== "admin") {
+    if (post.writer == req.user.id || req.user.role == "admin") {
       next();
+    }else{
+      return res.status(403).json({
+        success: false,
+        message: "You are not allowed to perform this action",
+      });
     }
     
-    return res.status(403).json({
-      success: false,
-      message: "You are not allowed to perform this action",
-    });
   } catch (error) {
     next(error);
   }
