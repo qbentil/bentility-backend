@@ -171,12 +171,35 @@ export const changePassword = async (req, res, next) => {
         message: "User not found",
       });
     }
-    // remove password and token
-    const { password, token, ...userData } = user._doc;
-    res.status(200).json({
-      success: true,
-      message: "Password changed successfully",
-      data: userData,
+    // send password change email
+    const data = {
+      email: user.email,
+      subject: "Password Changed <no-reply>",
+      message: `
+        <h3>Hi ${user?.name || null},</h3> 
+        <p>
+          We have noticed that you have changed your password. <br /> If you did not take this action, please contact us immediately.
+        </p>
+        <p>Thank you</p>  
+
+        <p>Regards,</p> 
+        <p>Team <b>Bentility</b></p>  
+        <b>CONTACTS:</b> <br />
+        <b>Phone:</b> +233 55 684 4331 <br />
+        <b>Email:</b> bentility.blog@gmail.com <br />
+
+        <p><small><i>This is an auto-generated email, please do not reply</i></small></p>
+
+      `,
+    };
+    Mail.SendMail(data, (info) => {
+      // remove password and token
+      const { password, token, ...userData } = user._doc;
+      res.status(200).json({
+        success: true,
+        message: "Password changed successfully",
+        data: userData,
+      });
     });
   } catch (error) {
     next(error);

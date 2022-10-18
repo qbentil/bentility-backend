@@ -98,9 +98,9 @@ export const deleteCategory = async (req, res, next) => {
 export const getCategory = async (req, res, next) => {
   let {key, value} = req.query;
   if(!key) key = "_id";
-  const keys = ["_id", "slug", "title"];
+  const keys = ["_id", "slug", "title", "status"];
   if(!keys.includes(key)) {
-    return next(createError("Invalid query key <[_id, slug, title]>", 400));
+    return next(createError("Invalid query key <[_id, slug, title, status]>", 400));
   }
  if(!value) {
     return next(createError("Key Value is required", 400));
