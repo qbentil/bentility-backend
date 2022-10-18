@@ -36,11 +36,11 @@ const getPosts = async (req, res, next) => {
 const getPost = async (req, res, next) => {
   let { key, value } = req.params;
   if (!key) key = "_id";
-  const keys = ["_id", "title", "writer", "createdAt"];
+  const keys = ["_id", "title", "writer", "createdAt", "status"];
   if (!keys.includes(key)) {
     return res.status(400).json({
       success: false,
-      message: "Invalid query key <[_id, title, writer, createdAt]>",
+      message: "Invalid query key <[_id, title, writer, createdAt,  status]>",
     });
   }
   if (!value) {
