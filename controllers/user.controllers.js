@@ -186,7 +186,7 @@ export const restTokenRequest = async (req, res, next) => {
 
         Thank you. <br /> <br />
         Regards, <br />
-        ${process.env.APP_NAME}, <br />
+        ${process.env.EMAIL_NAME}, <br />
         Support Team👨‍💻
       `,
     };
