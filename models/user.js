@@ -35,6 +35,10 @@ const UserSchema = new Schema({
         type: String,
         default: ''
     },
+    reset_token: {
+        type: String,
+        default: null
+    },
     confirmed: {
         type: Boolean,
         default: false
