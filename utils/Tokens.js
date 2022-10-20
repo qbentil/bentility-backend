@@ -18,7 +18,16 @@ const GenerateToken = (user) => {
         }
     );
 
-    return { access_token, refresh_token }
+    //  Create reset token
+    const reset_token = jwt.sign(
+        { id: user._id, role: user.role, email: user.email },
+        process.env.JWT_SECRET || "",
+        {
+            expiresIn: '1d'
+        }
+    );
+
+    return { access_token, refresh_token, reset_token };
 }
 
 export default GenerateToken
