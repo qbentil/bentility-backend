@@ -6,7 +6,7 @@ const GenerateToken = (user) => {
         { id: user._id, role: user.role },
         process.env.JWT_SECRET || "",
         {
-            expiresIn: '1d'
+            expiresIn: '1d' // 1 day
         }
     );
     //   Create refresh token
@@ -14,7 +14,7 @@ const GenerateToken = (user) => {
         { id: user._id, role: user.role },
         process.env.JWT_REFRESH_SECRET || "",
         {
-            expiresIn: '30d'
+            expiresIn: '30d' // 30 days
         }
     );
 
@@ -23,7 +23,7 @@ const GenerateToken = (user) => {
         { id: user._id, role: user.role, email: user.email },
         process.env.JWT_SECRET || "",
         {
-            expiresIn: '1d'
+            expiresIn: '1h' // 1 hour
         }
     );
 
