@@ -157,7 +157,7 @@ export const changeAvatar = async (req, res, next) => {
 };
 
 // REQUEST REST TOKEN
-export const restTokenRequest = async (req, res, next) => {
+export const resetTokenRequest = async (req, res, next) => {
   const { email } = req.body;
   try {
     const user = await User.findOne({ email });
@@ -194,7 +194,33 @@ export const restTokenRequest = async (req, res, next) => {
       res.status(200).json({
         success: true,
         message: "Token sent to email",
+
       });
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// VERIFY RESET TOKEN
+export const confirmTokenUser = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ reset_token: req.token });
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    if (user._id.toString() !== req.user.id) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized access",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Token verified successfully",
     });
   } catch (error) {
     next(error);
