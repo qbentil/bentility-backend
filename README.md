@@ -9,19 +9,19 @@
 <h1 align="center">Bentility Blog</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/qbentil/bentility?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/qbentil/bentility-backend?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/qbentil/bentility?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/qbentil/bentility-backend?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/qbentil/bentility?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/qbentil/bentility-backend?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/qbentil/bentility?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/qbentil/bentility-backend?color=56BEB8">
 
-  <img alt="Github issues" src="https://img.shields.io/github/issues/qbentil/bentility?color=56BEB8" />
+  <img alt="Github issues" src="https://img.shields.io/github/issues/qbentil/bentility-backend?color=56BEB8" />
 
-  <img alt="Github forks" src="https://img.shields.io/github/forks/qbentil/bentility?color=56BEB8" />
+  <img alt="Github forks" src="https://img.shields.io/github/forks/qbentil/bentility-backend?color=56BEB8" />
 
-  <img alt="Github stars" src="https://img.shields.io/github/stars/qbentil/bentility?color=56BEB8" />
+  <img alt="Github stars" src="https://img.shields.io/github/stars/qbentil/bentility-backend?color=56BEB8" />
 </p>
 
 Status
@@ -73,7 +73,7 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Clone this project
-$ git clone https://github.com/qbentil/bentility
+$ git clone https://github.com/qbentil/bentility-backend
 
 # Access
 $ cd bentility
@@ -82,7 +82,7 @@ $ cd bentility
 $ npm install
 
 # Run the project
-$ npm 
+$ npm start
 
 # The server will initialize in the <http://localhost:8800>
 ```

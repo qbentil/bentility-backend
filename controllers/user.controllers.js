@@ -158,7 +158,7 @@ export const changeAvatar = async (req, res, next) => {
 
 // REQUEST REST TOKEN
 export const resetTokenRequest = async (req, res, next) => {
-  const { email } = req.body;
+  const { email, domain } = req.body;
   try {
     const user = await User.findOne({ email });
     if (!user) {
@@ -177,8 +177,8 @@ export const resetTokenRequest = async (req, res, next) => {
         <p>Hello ${user.name}, </p>
 
         <p>You are receiving this email because you (or someone else) have requested the reset of the password for your account.</p>
-        <p>Please click on this following <a href='${process.env.SITE_URL}/verify-token/${reset_token}' >link</a>, or paste the link below into your browser to complete the process: </p>
-        <i>${process.env.SITE_URL}/verify-token/${reset_token} </i> <br />
+        <p>Please click on this following <a href='${domain}/verify-token/${reset_token}' >link</a>, or paste the link below into your browser to complete the process: </p>
+        <i>${domain}/verify-token/${reset_token} </i> <br />
 
         <p><b>Note:</b> This link will expire in 1 hour. </p>
 
