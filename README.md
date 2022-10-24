@@ -1,33 +1,26 @@
-<div align="center" id="top"> 
-  <img src="./dash.png" alt="Bentility" />
 
-  &#xa0;
-
-  <a href="https://bentility.vercel.app">Demo</a>
-</div>
-
-<h1 align="center">Bentility Blog</h1>
+<h1 align="center">Bentility Blog API</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/qbentil/bentility-backend?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/qbentil/bentility?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/qbentil/bentility-backend?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/qbentil/bentility?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/qbentil/bentility-backend?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/qbentil/bentility?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/qbentil/bentility-backend?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/qbentil/bentility?color=56BEB8">
 
-  <img alt="Github issues" src="https://img.shields.io/github/issues/qbentil/bentility-backend?color=56BEB8" />
+  <img alt="Github issues" src="https://img.shields.io/github/issues/qbentil/bentility?color=56BEB8" />
 
-  <img alt="Github forks" src="https://img.shields.io/github/forks/qbentil/bentility-backend?color=56BEB8" />
+  <img alt="Github forks" src="https://img.shields.io/github/forks/qbentil/bentility?color=56BEB8" />
 
-  <img alt="Github stars" src="https://img.shields.io/github/stars/qbentil/bentility-backend?color=56BEB8" />
+  <img alt="Github stars" src="https://img.shields.io/github/stars/qbentil/bentility?color=56BEB8" />
 </p>
 
 Status
 
 <h4 align="center"> 
-	🚧  Bentility 🚀 Under construction...  🚧
+	🚧  Bentility API Under construction... 🚀  🚧
 </h4> 
 
 <hr>
@@ -50,9 +43,16 @@ Describe your project
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Writer & Admin Authentication \
+:heavy_check_mark:  Create-Read-Update-Delete Blog \
+:heavy_check_mark: Save blog as draft \
+:heavy_check_mark:  Create-Read-Update-Delete Categories \
+:heavy_check_mark:  Save category as draft \
+:heavy_check_mark:  Create-Read-Update-Delete Writer \
+:heavy_check_mark: Persist user login with access and refresh token using JWT \
+:heavy_check_mark:  protect Admin routes using JWT authentications \
+:heavy_check_mark:  Send email notifications on security updates and blog updates  using nodemailer
+
 
 ## :rocket: Technologies ##
 
@@ -64,6 +64,7 @@ The following tools were used in this project:
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
 - [JWT](https://jwt.io/)
+- [Nodemailer](https://nodemailer.com/about/)
 
 ## :white_check_mark: Requirements ##
 
