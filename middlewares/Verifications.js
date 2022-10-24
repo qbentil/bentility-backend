@@ -38,8 +38,9 @@ export const verifyResetToken = (req, res, next) => {
   let token;
   try {
     token = req.headers.authorization?.split(" ")[1];
+    console.log("Token =", token);
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
+    console.log("Decoded =",decoded);
     // check if token is valid
     if (!decoded) {
       return next(CreateError(401, "Invalid access token"));
@@ -53,7 +54,7 @@ export const verifyResetToken = (req, res, next) => {
     req.token = token;
     next();
   } catch (err) {
-    return next(CreateError("Token has Expired. Request a new token", 401));
+    return next(CreateError("Invalid Reset Token", 401));
   }
   if (!token) {
     return next(CreateError("No reset token found", 401));
