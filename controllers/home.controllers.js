@@ -5,7 +5,7 @@ export const HomeController = (req, res, next) => {
   res.json({
     message: "Welcome to the Bentility Blog API",
     repository_url: "Sorry this is a private repository",
-    base_url: "https://bentility-api.herokuapp.com",
+    base_url: "https://bentility-api.onrender.com",
     public_endpoints: [
       {
         method: "POST",
@@ -80,7 +80,7 @@ export const PUBLIC_SENDMAIL = async (req, res, next) => {
         ${sender_name}<br>
         ${sender_email || ''}<br> <br>
 
-        <small><i>This mailer is powered by <a href="https://bentility-api.herokuapp.com">Bentility (Mailer)</a></i></small> <br />
+        <small><i>This mailer is powered by <a href="https://bentility-api.onrender.com">Bentility (Mailer)</a></i></small> <br />
         <small>Made with ❤ by <i>
         <a href="https://qbentil.com">Shadrack Bentil</a></i></small>
       `,
