@@ -163,6 +163,24 @@ const revertPost = async (req, res, next) => {
   }
 };
 
+// FETCH PUBLSIHED POSTS
+const getPostsAlt = async (req, res, next) => {
+  const { page = 1, limit = 10, type = "all" } = req.query;
+  try {
+    const posts = await Post.find({ status: "published" })
+      .skip((page - 1) * limit)
+      .limit(limit * 1);
+    res.status(200).json({
+      success: true,
+      message: "Posts retrieved successfully",
+      total: posts.length,
+      data: posts,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   createPost,
   getPosts,
@@ -171,4 +189,5 @@ export {
   deletePost,
   publishPost,
   revertPost,
+  getPostsAlt,
 };
