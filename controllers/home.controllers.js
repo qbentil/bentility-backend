@@ -21,7 +21,7 @@ export const HomeController = (req, res, next) => {
       },
     ],
     author: "Shadrack Bentil",
-    author_url: "https://qbentil.com",
+    author_url: "https://github.com/qbentil",
   });
 };
 
