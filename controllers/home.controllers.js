@@ -82,7 +82,7 @@ export const PUBLIC_SENDMAIL = async (req, res, next) => {
 
         <small><i>This mailer is powered by <a href="https://bentility-api.onrender.com">Bentility (Mailer)</a></i></small> <br />
         <small>Made with ❤ by <i>
-        <a href="https://qbentil.com">Shadrack Bentil</a></i></small>
+        <a href="https://github.com/qbentil">Shadrack Bentil</a></i></small>
       `,
     };
     Mail.publicMailer(data, (info) => {
@@ -146,10 +146,8 @@ export const CONTACTMAIL = async (req, res, next) => {
       <p>Message: ${req.body.message}</p>
       
       <p>Secured by Bentility (MAILER) </p>
-      
       Regards, <br>
       Bentility Team <br> <br>
-
       <small>Powered by Bentility API</small>
       
       `
