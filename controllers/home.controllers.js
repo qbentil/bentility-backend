@@ -86,7 +86,7 @@ export const PUBLIC_SENDMAIL = async (req, res, next) => {
 
         <small><i>This mailer is powered by <a href="https://bentility-api.onrender.com">Bentility (Mailer)</a></i></small> <br />
         <small>Made with ❤ by <i>
-        <a href="https://github.com/qbentil">Shadrack Bentil</a></i></small>
+        <a href="https://qbentil.me">Shadrack Bentil</a></i></small>
       `,
     };
     Mail.publicMailer(data, (info) => {
