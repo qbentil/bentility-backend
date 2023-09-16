@@ -41,7 +41,6 @@ const WelcomeHTML = (user) => {
 
 const HTML = (data) => {
     return `
-    <h1>${data.subject}</h1>
     <p>${data.message}</p>
     `;
 }
