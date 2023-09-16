@@ -4,18 +4,18 @@ import User from "../models/user.js";
 export const HomeController = (req, res, next) => {
   res.json({
     message: "Welcome to the Bentility Blog API",
-    repository_url: "Sorry this is a private repository",
-    base_url: "https://bentility-api.onrender.com",
+    repository: "Sorry this is a private repository, but I've got you🤝, check my public mailer below",
+    REPO: "https://github.com/LEARNERS-PAL/everythingmail#checkered_flag-starting",
     public_endpoints: [
       {
         method: "POST",
-        path: "/public/sendmail",
+        path: "/api/send",
         description: "Send email to anyone with our public mailer",
         body: {
           receiver_email: "string" || "required",
           subject: "String" || "required",
           message: "String" || "required",
-          sender_name: "String" || "optional",
+          sender_identity: "String" || "optional",
           sender_email: "String" || "optional",
         },
       },
