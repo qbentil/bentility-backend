@@ -20,8 +20,12 @@ export const HomeController = (req, res, next) => {
         },
       },
     ],
-    author: "Shadrack Bentil",
-    author_url: "https://github.com/qbentil",
+    author: {
+      name: "Shadrack Bentil",
+      github: "https://github.com/qbentil",
+      contact: "bentilshadrack72@gmail.com",
+      portfolio: "https://qbentil.me"
+    }
   });
 };
 
