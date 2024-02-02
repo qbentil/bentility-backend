@@ -1,48 +1,48 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const PostSchema = new Schema(
-  {
+const PostSchema = new Schema({
     title: {
-      type: String,
-      required: [true, "Title is required"],
-      unique: true,
+        type: String,
+        required: [true, 'Title is required'],
+        unique: true
     },
     content: {
-      type: String,
-      required: [true, "Content is required"],
+        type: String,
+        required: [true, 'Content is required']
     },
     slug: {
-      type: String,
-      required: [true, "Slug is required"],
-      unique: true,
+        type: String,
+        required: [true, 'Slug is required'],
+        unique: true
+        
     },
     categories: {
-      type: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "Category",
-        },
-      ],
-      required: [true, "Categories is required"],
+        type: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Category'
+            }
+        ],
+        required: [true, 'Categories is required']
     },
     views: {
-      type: Number,
-      default: 0,
+        type: Number,
+        default: 0
     },
     writer: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: [true, "Writer is required"],
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'Writer is required']
     },
     status: {
-      type: String,
-      enum: ["published", "draft"],
-      required: [true, "Post status is required"],
-    },
-  },
-  { timestamps: true }
-);
+        type: String,
+        enum: ["published", "draft"],
+        required: [true, 'Post status is required']
+    }
+    
+    
+}, { timestamps: true });
 
-export default mongoose.models["Post"] || mongoose.model("Post", PostSchema);
+export default mongoose.models['Post'] || mongoose.model('Post', PostSchema);

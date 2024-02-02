@@ -1,10 +1,4 @@
-import {
-  createPost,
-  deletePost,
-  getPost,
-  getPosts,
-  updatePost,
-} from "../controllers/post.controllers.js";
+import { createPost, deletePost, getPost, getPosts, updatePost } from "../controllers/post.controllers.js";
 
 import { Router } from "express";
 import { verifyAccessToken } from "../middlewares/Verifications.js";
@@ -15,12 +9,12 @@ const router = Router();
 router.post("/", verifyAccessToken, createPost);
 
 // READ POSTS
-router.get("/", getPosts);
+router.get("/", getPosts); 
 
 // UPDATE POST
 router.put("/:id", verifyAccessToken, verifyPostOwner, updatePost);
 // READ POST BY ID
-router.get("/post", getPost);
+router.get("/post", getPost)
 
 // DELETE POST
 router.delete("/:id", verifyAccessToken, verifyPostOwner, deletePost);

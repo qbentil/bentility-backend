@@ -1,20 +1,13 @@
 import { Router } from "express";
-import {
-  AUTHENTICATION,
-  GETREFRESHTOKEN,
-  LOGOUT,
-} from "../controllers/auth.controllers.js";
-import {
-  confirmTokenUser,
-  resetTokenRequest,
-} from "../controllers/user.controllers.js";
+import { AUTHENTICATION, GETREFRESHTOKEN, LOGOUT } from "../controllers/auth.controllers.js";
+import { confirmTokenUser, resetTokenRequest } from "../controllers/user.controllers.js";
 import { verifyResetToken } from "../middlewares/Verifications.js";
 
-const router = Router();
+const router = Router()
 
-router.post("/", AUTHENTICATION);
-router.get("/", LOGOUT);
-router.get("/refresh", GETREFRESHTOKEN);
+router.post("/", AUTHENTICATION)
+router.get("/", LOGOUT)
+router.get("/refresh", GETREFRESHTOKEN)
 // REQUEST PASSWORD RESET TOKEN
 router.post("/forgot-password", resetTokenRequest);
 

@@ -4,8 +4,7 @@ import User from "../models/user.js";
 export const HomeController = (req, res, next) => {
   res.json({
     message: "Welcome to the Bentility Blog API",
-    repository:
-      "Sorry this is a private repository, but I've got you🤝, check my public mailer below",
+    repository: "Sorry this is a private repository, but I've got you🤝, check my public mailer below",
     REPO: "https://github.com/LEARNERS-PAL/everythingmail#checkered_flag-starting",
     public_endpoints: [
       {
@@ -25,8 +24,8 @@ export const HomeController = (req, res, next) => {
       name: "Shadrack Bentil",
       github: "https://github.com/qbentil",
       contact: "bentilshadrack72@gmail.com",
-      portfolio: "https://qbentil.me",
-    },
+      portfolio: "https://qbentil.me"
+    }
   });
 };
 
@@ -51,8 +50,13 @@ export const SENDMAIL = async (req, res, next) => {
 
 // PUBLIC SEND MAIL
 export const PUBLIC_SENDMAIL = async (req, res, next) => {
-  const { receiver_email, subject, message, sender_name, sender_email } =
-    req.body;
+  const {
+    receiver_email,
+    subject,
+    message,
+    sender_name,
+    sender_email,
+  } = req.body;
 
   // make sure all required fields are provided
   if (!receiver_email || !subject || !message) {
@@ -78,7 +82,7 @@ export const PUBLIC_SENDMAIL = async (req, res, next) => {
 
         Regards, <br>
         ${sender_name}<br>
-        ${sender_email || ""}<br> <br>
+        ${sender_email || ''}<br> <br>
 
         <small><i>This mailer is powered by <a href="https://bentility-api.onrender.com">Bentility (Mailer)</a></i></small> <br />
         <small>Made with ❤ by <i>
@@ -124,7 +128,7 @@ export const getUsers = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+}
 
 export const CONTACTMAIL = async (req, res, next) => {
   try {
@@ -150,16 +154,17 @@ export const CONTACTMAIL = async (req, res, next) => {
       Bentility Team <br> <br>
       <small>Powered by Bentility API</small>
       
-      `,
-    };
-    Mail.CONTACTMAIL(data, (info) => {
+      `
+    }
+    Mail.CONTACTMAIL(data, (info)=> {
       res.status(200).json({
         success: true,
         message: "Email sent successfully",
-        info,
-      });
-    });
-  } catch (error) {
+        info
+      })
+    })
+  }catch (error) {
     next(error);
   }
 };
+
