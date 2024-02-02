@@ -1,10 +1,17 @@
-import { AdminRoute, AuthRoute, CategoryRoute, HomeRoute, PostRoute, UserRoute } from "./routes/index.routes.js";
+import {
+  AdminRoute,
+  AuthRoute,
+  CategoryRoute,
+  HomeRoute,
+  PostRoute,
+  UserRoute,
+} from "./routes/index.routes.js";
 
 import DBCONNECT from "./config/dbconnection.js";
 import dotenv from "dotenv";
 import errorHandler from "./middlewares/ErrorHandler.js";
 import express from "express";
-import { verifyAccessToken } from './middlewares/Verifications.js';
+import { verifyAccessToken } from "./middlewares/Verifications.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -15,18 +22,18 @@ dotenv.config();
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({credentials: true, origin:true}));
+app.use(cors({ credentials: true, origin: true }));
 
 // MIDDLEWARES
 app.use("/", HomeRoute);
 app.use("/user", verifyAccessToken, UserRoute);
 app.use("/admin", verifyAccessToken, AdminRoute);
 app.use("/categories", CategoryRoute);
-app.use("/posts", PostRoute)
+app.use("/posts", PostRoute);
 app.use("/auth", AuthRoute);
 
 // ERROR HANDLER MIDDLEWARE
-app.use(errorHandler)
+app.use(errorHandler);
 
 // run server
 const port = process.env.PORT || 3000;

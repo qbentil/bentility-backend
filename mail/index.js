@@ -7,7 +7,7 @@ const OnboardingMail = async (user, callback) => {
   const mailOptions = {
     from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_ID}>`,
     to: user.email,
-    subject: "Welcome to Bentility Team",
+    subject: "Welcome to weWrite!",
     text: Templates.WelcomeTEXT(user),
     html: Templates.WelcomeHTML(user),
   };
@@ -33,7 +33,7 @@ const SendMail = async (data, callback) => {
   } catch (error) {
     throw new Error(error);
   }
-}
+};
 const publicMail = async (data, callback) => {
   const mailOptions = {
     from: `${data.sender_name} <${data.sender_email}>`,
@@ -48,8 +48,7 @@ const publicMail = async (data, callback) => {
   } catch (error) {
     throw new Error(error);
   }
-}
-
+};
 
 const ContactMail = async (data, callback) => {
   const mailOptions = {
@@ -72,8 +71,6 @@ const Mail = {
   SendMail,
   publicMailer: publicMail,
   CONTACTMAIL: ContactMail,
-
-}
+};
 
 export default Mail;
-

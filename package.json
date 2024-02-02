@@ -1,7 +1,7 @@
 {
-  "name": "bentility",
+  "name": "web-api",
   "version": "1.0.0",
-  "description": "An API for bentility blog",
+  "description": "An API for weWrite blog",
   "main": "app.js",
   "type": "module",
   "scripts": {
@@ -12,18 +12,18 @@
     "url": "git+https://github.com/qbentil/bentility-api.git"
   },
   "keywords": [
-    "Blog",
-    "Bentility",
+    "Blog-API",
+    "Kingsley Amankwah",
     "API"
   ],
-  "author": "Shadrack Bentil (qbentil)",
+  "author": "Kingsley Amankwah",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/qbentil/bentility-api/issues"
   },
-  "homepage": "https://github.com/qbentil/bentility-api#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
