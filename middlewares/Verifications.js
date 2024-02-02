@@ -27,6 +27,7 @@ export const verifyAccessToken = (req, res, next) => {
     return next(CreateError("No access token", 401));
   }
 };
+
 export const verifySuperAdmin = (req, res, next) => {
   if (req.user && req.user.role !== "admin") {
     return next(CreateError("Unauthorized Access", 401));
@@ -40,7 +41,7 @@ export const verifyResetToken = (req, res, next) => {
     token = req.headers.authorization?.split(" ")[1];
     console.log("Token =", token);
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Decoded =",decoded);
+    console.log("Decoded =", decoded);
     // check if token is valid
     if (!decoded) {
       return next(CreateError(401, "Invalid access token"));

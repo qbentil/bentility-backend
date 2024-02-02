@@ -1,6 +1,6 @@
 const WelcomeTEXT = (user) => {
-    const { name, username, password, role, site } = user;
-    return `
+  const { name, username, password, role, site } = user;
+  return `
     Hello  ${name} - [${username}]!
 
     Welcome to the team!
@@ -16,11 +16,11 @@ const WelcomeTEXT = (user) => {
     Or visit blog here: ${site}/ <br/> <br/>
     
     Regards,
-    Bentility Team`;
-}
+    weWrite Team`;
+};
 const WelcomeHTML = (user) => {
-    const { name, username, password, role, site } = user;
-    return `
+  const { name, username, password, role, site } = user;
+  return `
     Hello  <i>${name} - [${username}]</i>! <br/>
 
     Welcome to the team! <br/>
@@ -36,19 +36,19 @@ const WelcomeHTML = (user) => {
     Or visit blog here: <a href="${site}/">${site}/</a> <br/> <br/>
     
     Regards,<br/>
-    Bentility Team`;
-}
+    weWrite Team`;
+};
 
 const HTML = (data) => {
-    return `
+  return `
     <p>${data.message}</p>
     `;
-}
+};
 
-const  Templates = {
-    WelcomeTEXT,
-    WelcomeHTML,
-    HTML
-}
+const Templates = {
+  WelcomeTEXT,
+  WelcomeHTML,
+  HTML,
+};
 
 export default Templates;

@@ -85,10 +85,7 @@ export const deleteCategory = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Category deleted successfully",
-      
-    })
-    
-    
+    });
   } catch (error) {
     next(error);
   }
@@ -96,33 +93,33 @@ export const deleteCategory = async (req, res, next) => {
 
 // GET SINGLE CATEOGRY
 export const getCategory = async (req, res, next) => {
-  let {key, value} = req.query;
-  if(!key) key = "_id";
+  let { key, value } = req.query;
+  if (!key) key = "_id";
   const keys = ["_id", "slug", "title", "status"];
-  if(!keys.includes(key)) {
-    return next(createError("Invalid query key <[_id, slug, title, status]>", 400));
+  if (!keys.includes(key)) {
+    return next(
+      createError("Invalid query key <[_id, slug, title, status]>", 400)
+    );
   }
- if(!value) {
+  if (!value) {
     return next(createError("Key Value is required", 400));
- }
-try {
-  const category = await Category.findOne({[key]: value});
-  if(!category) {
-      res.status(404).json({
-          success: false,
-          message: "Category not found",
-      });
   }
-  res.status(200).json({
+  try {
+    const category = await Category.findOne({ [key]: value });
+    if (!category) {
+      res.status(404).json({
+        success: false,
+        message: "Category not found",
+      });
+    }
+    res.status(200).json({
       success: true,
       message: "User retrieved successfully",
       data: category,
-  });
-
-  
-} catch (error) {
-  next(error);
-}
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 // PUBLISH CATEGORY

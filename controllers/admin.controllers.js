@@ -183,10 +183,10 @@ export const changePassword = async (req, res, next) => {
         <p>Thank you</p>  
 
         <p>Regards,</p> 
-        <p>Team <b>Bentility</b></p>  
+        <p>Team <b>weWrite</b></p>  
         <b>CONTACTS:</b> <br />
         <b>Phone:</b> +233 55 684 4331 <br />
-        <b>Email:</b> bentility.blog@gmail.com <br />
+        <b>Email:</b> weWrite.blog@gmail.com <br />
 
         <p><small><i>This is an auto-generated email, please do not reply</i></small></p>
 
@@ -236,7 +236,7 @@ export const resetPassword = async (req, res, next) => {
         <p>Thank you</p>  
 
         <p>Regards,</p> 
-        <p>Team <b>Bentility</b></p>  
+        <p>Team <b>weWrite</b></p>  
 
         <p><small><i>This is an auto-generated email, please do not reply</i></small></p>
 
